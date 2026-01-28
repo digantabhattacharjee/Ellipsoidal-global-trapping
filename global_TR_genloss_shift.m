@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%
 % Computes the shift coordinate perturbations for a given 
-% (global) trapping ellipsoid and shift coordinates(m0)
+% (global) trapping ellipsoid and shift coordinates (m0)
 % Requires linearizing the nonlinear matrix inequality (trapping condition) 
 %%%%%%%%%%%%%
 function SDP_soln = global_TR_genloss_shift(sys_info,opt_specs,chi1,m0,P)
@@ -118,12 +118,9 @@ cvx_end
 % LMIx =[Lm'*P + P*Lm + chi1*P + eps_E*Ix              P*cm;
 %                     (P*cm)'                      -chi1*r_s];
 %%%%%%%%%%%% Post processing
-if r_s > 0 && eps_E > 0 && chi1 > 0 ...
-   && max(eig(LMIx)) <= LMIx_tol 
+if r_s > 0 && eps_E > 0 && chi1 > 0 && max(eig(LMIx)) <= LMIx_tol 
     SDP_soln.chi1 = chi1;
-    % SDP_soln.chi2 = chi2;
     SDP_soln.P = P;
-    % SDP_soln.pmin = pmin;
     SDP_soln.Lm = Lm;
     SDP_soln.m = m;
     SDP_soln.Deltam = Delta_m;

@@ -16,6 +16,7 @@ pmax = opt_specs.pmax;
 LMIx_tol = opt_specs.LMIx_tol;
 solver_indx = opt_specs.solver_indx;
 eps_E = opt_specs.eps_E;
+lossless_tol = opt_specs.lossless_tol;
 %%%%%%%%%%%%
 if size(A,2) == 2 
     Q1 = Qm{1};
@@ -83,7 +84,8 @@ cvx_end
 S = -P;
 if r_s > 0 && eps_E > 0 && chi1 > 0 ...
    && min(eig(P)) >= 0.9999*pmin ...
-   && max(eig(LMIx)) <= LMIx_tol % && max(eig(LMIx(1:n,1:n))) <= 0
+   && max(eig(LMIx)) <= LMIx_tol ... % && max(eig(LMIx(1:n,1:n))) <= 0
+   && max(abs(G'*P(:))) <= lossless_tol
     SDP_soln.chi1 = chi1;
     SDP_soln.P = P;
     SDP_soln.pmin = pmin;

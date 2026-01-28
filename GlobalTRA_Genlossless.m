@@ -51,7 +51,7 @@ P_indx = 1; % 1 = Solve P through the SDP; 0 = P is fixed (Ix or scaled Ix)
 % P isn't fixed; it is equal to -P (or P, the sign doesn't matter)
 %%%%%%%%%%%%
 pmin = 1e-6; pmax = 1; %min and max eigenvalues of P for shift coordinate computation
-lossless_tol = 1e-3; % lossless constraint tolerance
+lossless_tol = 1e-6; % lossless constraint tolerance
 %%%%%%%%
 solver_indx = 2; %% 1 = sdpt3, 2 = sedumi
 opt_specs.solver_indx = solver_indx;
